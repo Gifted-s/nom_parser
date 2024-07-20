@@ -41,10 +41,6 @@ fn parse_person<'a>(input: &str) -> IResult<&str, Person> {
     // "Hello my name is Sunkanmi and i like Python and I am 44 years old"
     let (input, _) = tag("Hello, ")(input)?;
     let (input, (name, age, language)) = permutation((name_parser, age_parser, language_parser))(input)?;
-    // let (input, name) = alpha1(input)?;
-    // let (input, _) = tag_no_case(" and i am ")(input)?;
-    // let (input, age) = map_res(digit1,|x: &'a str| x.parse::<u8>())(input)?;
-    // let (input, _) = tag_no_case(" years old")(input)?;
     Ok((input, Person{name, age, language}))
 }
 
