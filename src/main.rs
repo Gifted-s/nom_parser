@@ -12,6 +12,7 @@ pub struct Person {
     pub language: String
 }
 
+/// parse age
 fn age_parser(input: &str) -> IResult<&str, u8> {
     let (input, _) = opt(tag_no_case(" and"))(input)?;
     let (input, _) = tag_no_case(" I am ")(input)?;
@@ -20,6 +21,7 @@ fn age_parser(input: &str) -> IResult<&str, u8> {
     Ok((input, age))
 }
 
+/// parse language
 fn language_parser(input: &str) -> IResult<&str, String> {
     let (input, _) = opt(tag_no_case(" and"))(input)?;
     let (input, _) = tag_no_case(" I like ")(input)?;
@@ -28,6 +30,7 @@ fn language_parser(input: &str) -> IResult<&str, String> {
 }
 
 
+/// parse name 
 fn name_parser(input: &str) -> IResult<&str, String> {
   let (input, _) = tag("my name is ")(input)?;
   let (input, name) = alpha1(input)?;
@@ -35,10 +38,10 @@ fn name_parser(input: &str) -> IResult<&str, String> {
 }
 
 
-
+/// parse person
 fn parse_person<'a>(input: &str) -> IResult<&str, Person> {
     // "Hello my name is Tomaso and I am 32 years old and I like Rust"
-    // "Hello my name is Sunkanmi and i like Python and I am 44 years old"
+    // "Hello my name is Sunkanmi and I like Python and I am 44 years old"
     let (input, _) = tag("Hello, ")(input)?;
     let (input, (name, age, language)) = permutation((name_parser, age_parser, language_parser))(input)?;
     Ok((input, Person{name, age, language}))
