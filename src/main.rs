@@ -51,7 +51,4 @@ fn parse_person<'a>(input: &str) -> IResult<&str, Person> {
 fn main() {
   dbg!(parse_person("Hello, my name is Tomaso and I am 32 years old and I like Rust"));
   dbg!(parse_person("Hello, my name is DB and I am 45 years old and I like Golang"));
-  dbg!(parse_person("Hello, my name is Sunkanmi and I like Python and I am 44 years old"));
-  dbg!(parse_person("Hello, my name is Yomade and I like Rust and I am 44 years old"));
-  dbg!(parse_person("Hello, my name is Kolade and I like JavaScript and I am 44 years old"));
 }
